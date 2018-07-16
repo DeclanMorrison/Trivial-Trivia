@@ -211,9 +211,10 @@ loadQuestion = () => {
   };
 
   console.log("I have been called!")
-  let questionAccessor = updateText();
+  questionAccessor = updateText();
+};
 
-  $(".answer").on("click", function(){
+$(".answer").on("click", function(){
     if ($(this).text() === questions[questionAccessor].answerC){
       console.log(questions, questionAccessor);
       $(".correct").removeClass("d-none").addClass("bounceIn")
@@ -224,5 +225,5 @@ loadQuestion = () => {
       nextQuestion();
     };
   });
-};
+
 });
