@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter|Overpass+Mono|Roboto+Slab:700');
+
+
+body{
+  background-color: grey;
+}
+
+#begin{
+  font-family: 'Overpass Mono', monospace;
+  font-size: 3em;
+  font-weight: 700;
+  padding-top: 1.5vh;
+}
+
+.jumbotron{
+  padding-bottom: 12px;
+}
+
+#main{
+  position: relative;
+}
+
+.bitter{
+  font-family: 'Bitter', serif;
+}
+
+.overpass{
+  font-family: 'Overpass Mono', monospace;
+}
+
+.correct{
+  position: absolute;
+  top: 25%;
+  left: 33%;
+  z-index: 100;
+
+  color: #4F9D69;
+  font-family: 'Roboto Slab', serif;
+  font-size: 125px;
+
+  -ms-transform: rotate(-30deg); /* IE 9 */
+  -webkit-transform: rotate(-30deg); /* Safari 3-8 */
+  transform: rotate(-30deg);
+}
+
+.wrong{
+  position: absolute;
+  top: 12%;
+  left: 33%;
+  z-index: 100;
+
+  color: #BC4B51;
+  font-family: 'Roboto Slab', serif;
+  font-size: 150px;
+
+  -ms-transform: rotate(20deg); /* IE 9 */
+  -webkit-transform: rotate(20deg); /* Safari 3-8 */
+  transform: rotate(20deg);
+}
+
+/* These pieces of code hide the scrollbar, taken from Stack Overflow, 
+here: https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll */
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
