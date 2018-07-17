@@ -1,11 +1,16 @@
 $(document).ready(function(){
 
 const $main = $("#main");
+const $background = $(".background");
 
 $("#begin").on("click", function(){
   $(".jumbotron").addClass("fadeOutUpBig");
   $("#begin").addClass("d-none");
+  $background.removeClass("d-none").addClass("slideInLeft");
   $main.addClass("fadeInUpBig").removeClass("d-none");
+  setTimeout(function (){
+    $(".jumbotron").empty();
+  }, 250);
   loadQuestion();
 });
 
@@ -200,12 +205,19 @@ loadQuestion = () => {
     //Remove the question box from view 1.5 seconds after an answer is pressed
     setTimeout(function(){
       $main.removeClass("fadeInUpBig").addClass("fadeOutUpBig");
+      $background.addClass("slideOutRight").removeClass("slideInLeft");
       //While the question box is not visible,
       setTimeout(function(){
         loadQuestion();
         $(".correct").removeClass("bounceIn").addClass("d-none")
         $(".wrong").removeClass("bounceIn").addClass("d-none")
+        if (questionNum < 9){
+          $background.text(`0${questionNum}`);
+        }else{
+          $background.text(questionNum);
+        }
         $main.removeClass("fadeOutUpBig").addClass("fadeInUpBig");
+        $background.removeClass("slideOutRight").addClass("slideInLeft");
       }, 500); 
     }, 1500);
   };
@@ -217,11 +229,11 @@ loadQuestion = () => {
 $(".answer").on("click", function(){
     if ($(this).text() === questions[questionAccessor].answerC){
       console.log(questions, questionAccessor);
-      $(".correct").removeClass("d-none").addClass("bounceIn")
+      $(".correct").removeClass("d-none").addClass("bounceIn twisted")
       nextQuestion();
     }else if ($(this).text() !== questions[questionAccessor].answerC){
       console.log(questions, questionAccessor);
-      $(".wrong").removeClass("d-none").addClass("bounceIn")
+      $(".wrong").removeClass("d-none").addClass("bounceIn twistedN")
       nextQuestion();
     };
   });
