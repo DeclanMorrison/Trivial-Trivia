@@ -49,6 +49,13 @@ body{
   font-size: 20vh;  
 }
 
+.answer{
+  cursor: pointer;
+  padding: 0px;
+  margin-left: 15px;
+  margin-right: 60px;
+}
+
 .wrong{
   position: absolute;
 
@@ -63,6 +70,14 @@ body{
   color: #BC4B51;
   font-family: 'Roboto Slab', serif;
   font-size: 20vh;
+}
+
+.correctbg{
+  background-color: #99D19C;
+}
+
+.wrongbg{
+  background-color: #F15156;
 }
 
 .time-up{

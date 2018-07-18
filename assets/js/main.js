@@ -180,7 +180,7 @@ const questions = {
 }
 
 let questionNum = 20;
-let time = 15;
+let time = 9999;
 
 let questionsCorrect = 0;
 let questionsWrong = 0;
@@ -265,6 +265,9 @@ loadQuestion = () => {
         $(".correct").removeClass("bounceIn").addClass("d-none")
         $(".wrong").removeClass("bounceIn").addClass("d-none")
         $(".time-up").removeClass("bounceIn").addClass("d-none")
+
+        $(".answer").removeClass("correctbg wrongbg text-white-50");
+
         
         //Generates the number of the question for display in the background.
         // if (questionNum <= 9){
@@ -301,10 +304,15 @@ $(".answer").on("click", function(){
     if ($(this).text() === questions[questionAccessor].answerC){
       console.log(questions, questionAccessor);
       questionsCorrect++;
+
+      $(this).addClass("correctbg text-white-50");
       $(".correct").removeClass("d-none").addClass("bounceIn twisted")
       nextQuestion();
     }else if ($(this).text() !== questions[questionAccessor].answerC){
       questionsWrong++;
+
+      $(this).addClass("wrongbg text-white-50");
+      console.log($(".answer"));
       console.log(questions, questionAccessor);
       $(".wrong").removeClass("d-none").addClass("bounceIn twistedN")
       nextQuestion();
