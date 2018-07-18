@@ -20,6 +20,11 @@ body{
   position: relative;
 }
 
+#end{
+  position: relative;
+  margin-top: -30vh;
+}
+
 .bitter{
   font-family: 'Bitter', serif;
 }
@@ -31,14 +36,27 @@ body{
 .correct{
   position: absolute;
 
+  top: 50%;
+  left: 50%;
+
+  margin-left: -52vh;
+  margin-top: -16vh;
+
   z-index: 100;
 
   color: #4F9D69;
   font-family: 'Roboto Slab', serif;
   font-size: 20vh;  
 }
+
 .wrong{
   position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  margin-left: -43vh;
+  margin-top: -16vh;
   
   z-index: 100;
 
@@ -47,32 +65,42 @@ body{
   font-size: 20vh;
 }
 
-.twisted{
-  -ms-transform: rotate(-30deg); /* IE 9 */
-  -webkit-transform: rotate(-30deg); /* Safari 3-8 */
-  transform: rotate(-30deg);
-}
+.time-up{
+  position: absolute;
 
-.twistedN{
-  -ms-transform: rotate(20deg); /* IE 9 */
-  -webkit-transform: rotate(20deg); /* Safari 3-8 */
-  transform: rotate(20deg);
+  top: 50%;
+  left: 50%;
+
+  margin-left: -46.5vh;
+  margin-top: -16vh;
+  
+  z-index: 100;
+
+  color: #BC4B51;
+  font-family: 'Roboto Slab', serif;
+  font-size: 19vh;
 }
 
 .background{
   position: fixed;
 
+  width: 100vw;
+
   top: 50%;
   left: 50%;
 
   margin-top: -84vw;
-  margin-left: -57vw;
+  margin-left: -54vw;
 
   font-family: 'Oswald', sans-serif;
   color: #D9D8D7;
   font-size: 106vw;
 
   z-index: -10;
+}
+
+.reset{
+  cursor: pointer;
 }
 
 /* These pieces of code hide the scrollbar, taken from Stack Overflow, 

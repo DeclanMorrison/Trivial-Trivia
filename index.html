@@ -58,8 +58,9 @@
         <div class="row">
             <button class="btn btn-outline-light btn-block" type="button" id="begin">BEGIN</button>
             <div id="main" class="col-12 bg-light animated d-none">
-                <div class="correct animated ">[CORRECT]</div>
-                <div class="wrong animated">[WRONG]</div>
+                <div class="correct animated d-none">[CORRECT]</div>
+                <div class="wrong animated d-none">[WRONG]</div>
+                <div class="time-up animated d-none">[TIME UP]</div>
                 <h1 class="bitter text-center question">QUESTION GOES HERE BUDD)</h1>
                 <div class="row">
                     <p class="overpass col-12 offset-1 answer answer1">Answer 1</p>
@@ -68,9 +69,18 @@
                     <p class="overpass col-12 offset-1 answer answer4">Answer 4</p>
                 </div>
             </div>
+            <div id="end" class="col-12 bg-light animated d-none">
+                <h1 class="bitter text-center title">Finished!</h1>
+                <div class="row">
+                    <p class="overpass col-12 offset-1 number-correct">You got _ questions correct.</p>
+                    <p class="overpass col-12 offset-1 number-wrong">You got _ questions wrong.</p>
+                    <p class="overpass col-12 offset-1 number-missed">You missed _ questions.</p>
+                    <p class="overpass col-12 offset-1 reset">Would you like to play again?</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="background d-none animated">01</div>
+    <div class="background d-none animated">15</div>
 </body>
 
 </html>

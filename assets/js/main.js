@@ -2,6 +2,7 @@ $(document).ready(function(){
 
 const $main = $("#main");
 const $background = $(".background");
+const $end = $("#end");
 
 $("#begin").on("click", function(){
   $(".jumbotron").addClass("fadeOutUpBig");
@@ -12,6 +13,7 @@ $("#begin").on("click", function(){
     $(".jumbotron").empty();
   }, 250);
   loadQuestion();
+  setTimer();
 });
 
 const questions = {
@@ -177,9 +179,51 @@ const questions = {
   }
 }
 
-let questionNum = 1;
+let questionNum = 20;
+let time = 15;
+
+let questionsCorrect = 0;
+let questionsWrong = 0;
+let questionsMissed = 0;
+
+setTimer = () => {
+  gameTimer = setInterval(decrement, 1000);
+};
+
+stopTimer = () => {
+  clearInterval(gameTimer);
+};
 
 loadQuestion = () => {
+
+  if(questionNum > 20){
+    gameEnd();
+  };
+
+  decrement = () => {
+    if (time <= 0){
+      stopTimer();
+      $(".time-up").removeClass("d-none").addClass("bounceIn");
+      questionsMissed++;
+      nextQuestion();
+    }else{
+      time = time - 1;
+
+      //Generates the number of the question for display in the background.
+      if (time >= 10){
+        $background.text(time);
+      }else{
+        $background.text(`0${time}`);
+      };
+    }
+  };
+
+  
+
+  // if (questionNum > 20){
+  //   $main.addClass("d-none");
+  //   $(".end").removeClass("d-none");
+  // };
   
   updateText = () => {
     let questionAccessor = `q${questionNum}`;
@@ -202,40 +246,83 @@ loadQuestion = () => {
 
   nextQuestion = () => {
     questionNum++;
+    
     //Remove the question box from view 1.5 seconds after an answer is pressed
     setTimeout(function(){
       $main.removeClass("fadeInUpBig").addClass("fadeOutUpBig");
       $background.addClass("slideOutRight").removeClass("slideInLeft");
+      
       //While the question box is not visible,
       setTimeout(function(){
+
+        //Loads the next question
         loadQuestion();
+        stopTimer();
+        $background.text("15");
+        time = 15;
+
+        //Hides the correct and wrong indicators
         $(".correct").removeClass("bounceIn").addClass("d-none")
         $(".wrong").removeClass("bounceIn").addClass("d-none")
-        if (questionNum < 9){
-          $background.text(`0${questionNum}`);
-        }else{
-          $background.text(questionNum);
-        }
+        $(".time-up").removeClass("bounceIn").addClass("d-none")
+        
+        //Generates the number of the question for display in the background.
+        // if (questionNum <= 9){
+        //   $background.text(`0${questionNum}`);
+        // }else{
+        //   $background.text(questionNum);
+        // };
+
+        //Move in the new question.
         $main.removeClass("fadeOutUpBig").addClass("fadeInUpBig");
+
+        //Changes the background.
         $background.removeClass("slideOutRight").addClass("slideInLeft");
-      }, 500); 
+        setTimer();
+      }, 700); 
     }, 1500);
   };
 
-  console.log("I have been called!")
+  gameEnd = () => {
+
+    $main.removeClass("fadeInUpBig").addClass("fadeOutUpBig");
+    $end.removeClass("d-none").removeClass("fadeOutUpBig").addClass("fadeInUpBig");
+
+    $(".number-correct").text(`You got ${questionsCorrect} questions correct!`);
+    $(".number-wrong").text(`You got ${questionsWrong} questions wrong.`);
+    $(".number-missed").text(`You missed ${questionsMissed} questions.`);
+
+  };
+
   questionAccessor = updateText();
 };
 
 $(".answer").on("click", function(){
     if ($(this).text() === questions[questionAccessor].answerC){
       console.log(questions, questionAccessor);
+      questionsCorrect++;
       $(".correct").removeClass("d-none").addClass("bounceIn twisted")
       nextQuestion();
     }else if ($(this).text() !== questions[questionAccessor].answerC){
+      questionsWrong++;
       console.log(questions, questionAccessor);
       $(".wrong").removeClass("d-none").addClass("bounceIn twistedN")
       nextQuestion();
     };
   });
+
+$(".reset").on("click", function() {
+  questionNum = 0;
+  questionsCorrect = 0;
+  questionsWrong = 0;
+  questionsMissed = 0;
+  nextQuestion();
+  loadQuestion();
+  $end.removeClass("fadeInUpBig").addClass("fadeOutUpBig");
+  setTimeout(function () {
+    $end.addClass("d-none");
+  }, 700);
+  
+});
 
 });
