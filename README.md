@@ -17,4 +17,4 @@ There is also an option to restart the game, which sets the player back at quesi
 ### How to install :
 This project can be simply installed by cloning the GitHub repo onto your computer, and then opening the `index.html` file.
 
-Alternatively, you can play the game live online [here](http://github.com).
+Alternatively, you can play the game live online [here](https://declanmorrison.github.io/Trivial-Trivia/).
